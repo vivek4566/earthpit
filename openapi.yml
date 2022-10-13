@@ -1,0 +1,83 @@
+openapi: '3.0.2'
+info:
+  title: MICRO SERVICES CURD OPERATIONS
+  version: '3.0'
+servers:
+  - url: http://localhost:8080
+
+
+paths:
+  /colorData:
+    post:
+      tags:
+        - user
+      description: UserCreate
+      operationId: UserCreate
+      responses:
+        '201':
+          description: UserCreate Sucessfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '400':
+          description: UserCreateFailure
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+      requestBody:
+        description: UserCreate
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BODYDATA'
+  /getdevice:
+    get:
+      tags:
+        - user
+      description:  GetUser
+      operationId: GetUser
+      responses:
+        '201':
+          description: GetUser Sucessfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BODYDATA'
+        '400':
+          description: GetUser UserCreateFailure
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+
+components:
+  schemas:
+    ApiResponse:
+      type: object
+      description:  ResponseInStatusCode
+      properties:
+        code: 
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string    
+          
+    BODYDATA:
+      type: object
+      properties:
+        device_Id: 
+          type: string
+        earthpitname:
+          type: string
+        date:
+          format: date-time
+          type: string
+        description:
+          type: string
+       
